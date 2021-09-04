@@ -79,7 +79,8 @@ class UploadImage extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  'Priyanshu Rajput',
+                                  // "UserData :- $user",
+                                  "Hey! User",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontSize: 22.0,
@@ -90,7 +91,7 @@ class UploadImage extends StatelessWidget {
                               ),
                               Container(
                                 child: Text(
-                                  'App Developer',
+                                  'Welcome',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontSize: 16.0,

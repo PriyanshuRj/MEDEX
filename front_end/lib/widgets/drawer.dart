@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:front_end/screens/upload_image.dart';
 import 'package:front_end/screens/home_page.dart';
+import 'package:front_end/screens/capture.dart';
 
 import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -49,7 +50,7 @@ class MyDrawer extends StatelessWidget {
                           ),
                           Container(
                             child: Text(
-                              'Priyanshu Rajput',
+                              'Hey! User',
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 22.0,
@@ -60,7 +61,7 @@ class MyDrawer extends StatelessWidget {
                           ),
                           Container(
                             child: Text(
-                              'App Developer',
+                              'Welcome',
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 16.0,
@@ -100,7 +101,12 @@ class MyDrawer extends StatelessWidget {
                 icon: Icon(Icons.history, color: Colors.black),
                 label: Text("History", style: TextStyle(color: Colors.black))),
             TextButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UploadImage()),
+                  );
+                },
                 icon: Icon(Icons.add, color: Colors.black),
                 label: Text("Upload Image",
                     style: TextStyle(color: Colors.black))),
@@ -108,7 +114,8 @@ class MyDrawer extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => UploadImage()),
+                    MaterialPageRoute(
+                        builder: (context) => TakePictureScreen()),
                   );
                 },
                 icon: Icon(Icons.camera, color: Colors.black),

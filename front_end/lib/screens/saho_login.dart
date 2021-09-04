@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:front_end/screens/home_page.dart';
 import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:sawo/sawo.dart';
+import 'dart:convert';
+import 'package:camera/camera.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -9,6 +11,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final CameraDescription camera;
+  _LoginScreenState({
+    this.camera,
+  });
   Sawo sawo = new Sawo(
     apiKey: "288d5890-9ea9-479c-b33d-1617f7382d0e",
     secretKey: "613354662f5bde7b00073aa3UGSL9dIDJU168YFSUYvQg7WN",
@@ -21,9 +27,10 @@ class _LoginScreenState extends State<LoginScreen> {
     if (payload == null || (payload is String && payload.length == 0)) {
       payload = "Login Failed :(";
     } else {
+      payload = json.decode(payload);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomePage(user: payload)),
+        MaterialPageRoute(builder: (context) => HomePage()),
       );
     }
     setState(() {

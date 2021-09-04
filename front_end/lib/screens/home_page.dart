@@ -8,13 +8,12 @@ import 'package:front_end/widgets/button_card.dart';
 import 'package:front_end/widgets/top_container.dart';
 import 'package:front_end/widgets/drawer.dart';
 
-class HomePage extends StatelessWidget {
-  final Object user;
+import 'package:front_end/screens/capture.dart';
 
-  HomePage({
-    this.user,
-    print(user),
-  });
+class HomePage extends StatelessWidget {
+
+
+
 
   Text subheading(String title) {
     return Text(
@@ -52,15 +51,6 @@ class HomePage extends StatelessWidget {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // children: <Widget>[
-                    //   Icon(Icons.menu,
-                    //       color: LightColors.kDarkBlue, size: 30.0),
-                    //   Icon(Icons.search,
-                    //       color: LightColors.kDarkBlue, size: 25.0),
-                    // ],
-                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 0, vertical: 0.0),
@@ -89,8 +79,8 @@ class HomePage extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  // "UserData :- $user",
-                                  "Priyanshu Rajput",
+                                  // "UserData :- $users",
+                                  "Hey! User",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontSize: 22.0,
@@ -101,7 +91,7 @@ class HomePage extends StatelessWidget {
                               ),
                               Container(
                                 child: Text(
-                                  'App Developer',
+                                  'Welcome',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontSize: 16.0,
@@ -167,7 +157,7 @@ class HomePage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => UploadImage()),
+                                    builder: (context) => TakePictureScreen()),
                               );
                             },
                             child: Row(children: <Widget>[

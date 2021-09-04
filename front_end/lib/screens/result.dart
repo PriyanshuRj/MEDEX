@@ -79,7 +79,7 @@ class Result extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  'Priyanshu Rajput',
+                                  'Hey! User',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontSize: 22.0,
@@ -90,7 +90,7 @@ class Result extends StatelessWidget {
                               ),
                               Container(
                                 child: Text(
-                                  'App Developer',
+                                  'Welcome',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontSize: 16.0,
