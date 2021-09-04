@@ -11,10 +11,6 @@ import 'package:front_end/widgets/drawer.dart';
 import 'package:front_end/screens/capture.dart';
 
 class HomePage extends StatelessWidget {
-
-
-
-
   Text subheading(String title) {
     return Text(
       title,
@@ -37,7 +33,7 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         // bottom: Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
         actions: [
-          Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
+          // Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
         ],
         iconTheme: IconThemeData(color: LightColors.kDarkBlue),
       ),

@@ -27,7 +27,7 @@ class UploadImage extends StatelessWidget {
         elevation: 0,
         // bottom: Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
         actions: [
-          Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
+          // Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
         ],
         iconTheme: IconThemeData(color: LightColors.kDarkBlue),
       ),
