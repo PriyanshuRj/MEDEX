@@ -155,7 +155,8 @@ class HomePage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => CommingSoon()),
+                                    builder: (context) => CaptureImage(
+                                        title: 'Image Picker Example')),
                               );
                             },
                             child: Row(children: <Widget>[
