@@ -7,6 +7,8 @@ import 'package:front_end/widgets/drawer.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
@@ -34,7 +36,13 @@ class _MyHomePageState extends State<CaptureImage> {
   final TextEditingController maxWidthController = TextEditingController();
   final TextEditingController maxHeightController = TextEditingController();
   final TextEditingController qualityController = TextEditingController();
+//   Future<List> fetchData() async {
+// final response = await http.post('https://localhost:5000');
 
+// List responseJson = json.decode(response.body.toString());
+
+// return responseJson;
+// }
   void _onImageButtonPressed(ImageSource source,
       {BuildContext? context, bool isMultiImage = false}) async {
     await _displayPickImageDialog(context!,
@@ -184,38 +192,39 @@ class _MyHomePageState extends State<CaptureImage> {
                   ]),
             ),
             Padding(
-              padding : EdgeInsets.symmetric(vertical: 100.0),
+              padding: EdgeInsets.symmetric(vertical: 100.0),
               child: Center(
-                child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
-                    ? FutureBuilder<void>(
-                        future: retrieveLostData(),
-                        builder:
-                            (BuildContext context, AsyncSnapshot<void> snapshot) {
-                          switch (snapshot.connectionState) {
-                            case ConnectionState.none:
-                            case ConnectionState.waiting:
-                              return const Text(
-                                'You have not yet picked an image.',
-                                textAlign: TextAlign.center,
-                              );
-                            case ConnectionState.done:
-                              return _handlePreview();
-                            default:
-                              if (snapshot.hasError) {
-                                return Text(
-                                  'Pick image/video error: ${snapshot.error}}',
-                                  textAlign: TextAlign.center,
-                                );
-                              } else {
-                                return const Text(
-                                  'You have not yet picked an image.',
-                                  textAlign: TextAlign.center,
-                                );
+                child:
+                    !kIsWeb && defaultTargetPlatform == TargetPlatform.android
+                        ? FutureBuilder<void>(
+                            future: retrieveLostData(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<void> snapshot) {
+                              switch (snapshot.connectionState) {
+                                case ConnectionState.none:
+                                case ConnectionState.waiting:
+                                  return const Text(
+                                    'You have not yet picked an image.',
+                                    textAlign: TextAlign.center,
+                                  );
+                                case ConnectionState.done:
+                                  return _handlePreview();
+                                default:
+                                  if (snapshot.hasError) {
+                                    return Text(
+                                      'Pick image/video error: ${snapshot.error}}',
+                                      textAlign: TextAlign.center,
+                                    );
+                                  } else {
+                                    return const Text(
+                                      'You have not yet picked an image.',
+                                      textAlign: TextAlign.center,
+                                    );
+                                  }
                               }
-                          }
-                        },
-                      )
-                    : _handlePreview(),
+                            },
+                          )
+                        : _handlePreview(),
               ),
             ),
           ],
