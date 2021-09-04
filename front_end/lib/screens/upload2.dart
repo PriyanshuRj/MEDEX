@@ -1,10 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:front_end/theme/colors/light_colors.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+
+import 'package:front_end/widgets/top_container.dart';
+import 'package:front_end/widgets/drawer.dart';
+import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:video_player/video_player.dart';
 
 class CaptureImage extends StatefulWidget {
   CaptureImage({Key? key, this.title}) : super(key: key);
@@ -23,10 +27,7 @@ class _MyHomePageState extends State<CaptureImage> {
   }
 
   dynamic _pickImageError;
-  bool isVideo = false;
 
-  VideoPlayerController? _controller;
-  VideoPlayerController? _toBeDisposed;
   String? _retrieveDataError;
 
   final ImagePicker _picker = ImagePicker();
@@ -34,120 +35,26 @@ class _MyHomePageState extends State<CaptureImage> {
   final TextEditingController maxHeightController = TextEditingController();
   final TextEditingController qualityController = TextEditingController();
 
-  Future<void> _playVideo(XFile? file) async {
-    if (file != null && mounted) {
-      await _disposeVideoController();
-      late VideoPlayerController controller;
-      if (kIsWeb) {
-        controller = VideoPlayerController.network(file.path);
-      } else {
-        controller = VideoPlayerController.file(File(file.path));
-      }
-      _controller = controller;
-      // In web, most browsers won't honor a programmatic call to .play
-      // if the video has a sound track (and is not muted).
-      // Mute the video so it auto-plays in web!
-      // This is not needed if the call to .play is the result of user
-      // interaction (clicking on a "play" button, for example).
-      final double volume = kIsWeb ? 0.0 : 1.0;
-      await controller.setVolume(volume);
-      await controller.initialize();
-      await controller.setLooping(true);
-      await controller.play();
-      setState(() {});
-    }
-  }
-
   void _onImageButtonPressed(ImageSource source,
       {BuildContext? context, bool isMultiImage = false}) async {
-    if (_controller != null) {
-      await _controller!.setVolume(0.0);
-    }
-    if (isVideo) {
-      final XFile? file = await _picker.pickVideo(
-          source: source, maxDuration: const Duration(seconds: 10));
-      await _playVideo(file);
-    } else if (isMultiImage) {
-      await _displayPickImageDialog(context!,
-          (double? maxWidth, double? maxHeight, int? quality) async {
-        try {
-          final pickedFileList = await _picker.pickMultiImage(
-            maxWidth: maxWidth,
-            maxHeight: maxHeight,
-            imageQuality: quality,
-          );
-          setState(() {
-            _imageFileList = pickedFileList;
-          });
-        } catch (e) {
-          setState(() {
-            _pickImageError = e;
-          });
-        }
-      });
-    } else {
-      await _displayPickImageDialog(context!,
-          (double? maxWidth, double? maxHeight, int? quality) async {
-        try {
-          final pickedFile = await _picker.pickImage(
-            source: source,
-            maxWidth: maxWidth,
-            maxHeight: maxHeight,
-            imageQuality: quality,
-          );
-          setState(() {
-            _imageFile = pickedFile;
-          });
-        } catch (e) {
-          setState(() {
-            _pickImageError = e;
-          });
-        }
-      });
-    }
-  }
-
-  @override
-  void deactivate() {
-    if (_controller != null) {
-      _controller!.setVolume(0.0);
-      _controller!.pause();
-    }
-    super.deactivate();
-  }
-
-  @override
-  void dispose() {
-    _disposeVideoController();
-    maxWidthController.dispose();
-    maxHeightController.dispose();
-    qualityController.dispose();
-    super.dispose();
-  }
-
-  Future<void> _disposeVideoController() async {
-    if (_toBeDisposed != null) {
-      await _toBeDisposed!.dispose();
-    }
-    _toBeDisposed = _controller;
-    _controller = null;
-  }
-
-  Widget _previewVideo() {
-    final Text? retrieveError = _getRetrieveErrorWidget();
-    if (retrieveError != null) {
-      return retrieveError;
-    }
-    if (_controller == null) {
-      return const Text(
-        'You have not yet picked a video',
-        textAlign: TextAlign.center,
-      );
-    }
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: AspectRatioVideo(_controller),
-    );
+    await _displayPickImageDialog(context!,
+        (double? maxWidth, double? maxHeight, int? quality) async {
+      try {
+        final pickedFile = await _picker.pickImage(
+          source: source,
+          maxWidth: maxWidth,
+          maxHeight: maxHeight,
+          imageQuality: quality,
+        );
+        setState(() {
+          _imageFile = pickedFile;
+        });
+      } catch (e) {
+        setState(() {
+          _pickImageError = e;
+        });
+      }
+    });
   }
 
   Widget _previewImages() {
@@ -156,22 +63,23 @@ class _MyHomePageState extends State<CaptureImage> {
       return retrieveError;
     }
     if (_imageFileList != null) {
-      return Semantics(
-          child: ListView.builder(
-            key: UniqueKey(),
-            itemBuilder: (context, index) {
-              // Why network for web?
-              // See https://pub.dev/packages/image_picker#getting-ready-for-the-web-platform
-              return Semantics(
-                label: 'image_picker_example_picked_image',
-                child: kIsWeb
-                    ? Image.network(_imageFileList![index].path)
-                    : Image.file(File(_imageFileList![index].path)),
-              );
-            },
-            itemCount: _imageFileList!.length,
-          ),
-          label: 'image_picker_example_picked_images');
+      return Padding(
+        padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
+        child: Semantics(
+            child: ListView.builder(
+              key: UniqueKey(),
+              itemBuilder: (context, index) {
+                return Semantics(
+                  label: 'image_picker_example_picked_image',
+                  child: kIsWeb
+                      ? Image.network(_imageFileList![index].path)
+                      : Image.file(File(_imageFileList![index].path)),
+                );
+              },
+              itemCount: _imageFileList!.length,
+            ),
+            label: 'image_picker_example_picked_images'),
+      );
     } else if (_pickImageError != null) {
       return Text(
         'Pick image error: $_pickImageError',
@@ -186,11 +94,7 @@ class _MyHomePageState extends State<CaptureImage> {
   }
 
   Widget _handlePreview() {
-    if (isVideo) {
-      return _previewVideo();
-    } else {
-      return _previewImages();
-    }
+    return _previewImages();
   }
 
   Future<void> retrieveLostData() async {
@@ -199,16 +103,11 @@ class _MyHomePageState extends State<CaptureImage> {
       return;
     }
     if (response.file != null) {
-      if (response.type == RetrieveType.video) {
-        isVideo = true;
-        await _playVideo(response.file);
-      } else {
-        isVideo = false;
-        setState(() {
-          _imageFile = response.file;
-          _imageFileList = response.files;
-        });
-      }
+      setState(() {
+        _imageFile = response.file;
+        _imageFileList = response.files;
+      });
+      // }
     } else {
       _retrieveDataError = response.exception!.code;
     }
@@ -216,40 +115,111 @@ class _MyHomePageState extends State<CaptureImage> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title!),
+        backgroundColor: LightColors.kDarkYellow,
+        // leading: Icon(Icons.menu, color: LightColors.kDarkBlue, size: 30.0),
+        elevation: 0,
+        // bottom: Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
+        actions: [
+          // Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
+        ],
+        iconTheme: IconThemeData(color: LightColors.kDarkBlue),
       ),
-      body: Center(
-        child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
-            ? FutureBuilder<void>(
-                future: retrieveLostData(),
-                builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.none:
-                    case ConnectionState.waiting:
-                      return const Text(
-                        'You have not yet picked an image.',
-                        textAlign: TextAlign.center,
-                      );
-                    case ConnectionState.done:
-                      return _handlePreview();
-                    default:
-                      if (snapshot.hasError) {
-                        return Text(
-                          'Pick image/video error: ${snapshot.error}}',
-                          textAlign: TextAlign.center,
-                        );
-                      } else {
-                        return const Text(
-                          'You have not yet picked an image.',
-                          textAlign: TextAlign.center,
-                        );
-                      }
-                  }
-                },
-              )
-            : _handlePreview(),
+      drawer: MyDrawer(),
+      body: SafeArea(
+        child: Column(
+          children: [
+            TopContainer(
+              height: 200,
+              width: width,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 0, vertical: 0.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          CircularPercentIndicator(
+                            radius: 90.0,
+                            lineWidth: 5.0,
+                            animation: true,
+                            percent: 0.75,
+                            circularStrokeCap: CircularStrokeCap.round,
+                            progressColor: LightColors.kRed,
+                            backgroundColor: LightColors.kDarkYellow,
+                            center: CircleAvatar(
+                              backgroundColor: LightColors.kBlue,
+                              radius: 35.0,
+                              backgroundImage: AssetImage(
+                                'assets/images/avatar.png',
+                              ),
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  // "UserData :- $user",
+                                  "Hey! User",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 22.0,
+                                    color: LightColors.kDarkBlue,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  ]),
+            ),
+            Padding(
+              padding : EdgeInsets.symmetric(vertical: 100.0),
+              child: Center(
+                child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
+                    ? FutureBuilder<void>(
+                        future: retrieveLostData(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot<void> snapshot) {
+                          switch (snapshot.connectionState) {
+                            case ConnectionState.none:
+                            case ConnectionState.waiting:
+                              return const Text(
+                                'You have not yet picked an image.',
+                                textAlign: TextAlign.center,
+                              );
+                            case ConnectionState.done:
+                              return _handlePreview();
+                            default:
+                              if (snapshot.hasError) {
+                                return Text(
+                                  'Pick image/video error: ${snapshot.error}}',
+                                  textAlign: TextAlign.center,
+                                );
+                              } else {
+                                return const Text(
+                                  'You have not yet picked an image.',
+                                  textAlign: TextAlign.center,
+                                );
+                              }
+                          }
+                        },
+                      )
+                    : _handlePreview(),
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -258,7 +228,6 @@ class _MyHomePageState extends State<CaptureImage> {
             label: 'image_picker_example_from_gallery',
             child: FloatingActionButton(
               onPressed: () {
-                isVideo = false;
                 _onImageButtonPressed(ImageSource.gallery, context: context);
               },
               heroTag: 'image0',
@@ -270,54 +239,11 @@ class _MyHomePageState extends State<CaptureImage> {
             padding: const EdgeInsets.only(top: 16.0),
             child: FloatingActionButton(
               onPressed: () {
-                isVideo = false;
-                _onImageButtonPressed(
-                  ImageSource.gallery,
-                  context: context,
-                  isMultiImage: true,
-                );
-              },
-              heroTag: 'image1',
-              tooltip: 'Pick Multiple Image from gallery',
-              child: const Icon(Icons.photo_library),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: FloatingActionButton(
-              onPressed: () {
-                isVideo = false;
                 _onImageButtonPressed(ImageSource.camera, context: context);
               },
               heroTag: 'image2',
               tooltip: 'Take a Photo',
               child: const Icon(Icons.camera_alt),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: FloatingActionButton(
-              backgroundColor: Colors.red,
-              onPressed: () {
-                isVideo = true;
-                _onImageButtonPressed(ImageSource.gallery);
-              },
-              heroTag: 'video0',
-              tooltip: 'Pick Video from gallery',
-              child: const Icon(Icons.video_library),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: FloatingActionButton(
-              backgroundColor: Colors.red,
-              onPressed: () {
-                isVideo = true;
-                _onImageButtonPressed(ImageSource.camera);
-              },
-              heroTag: 'video1',
-              tooltip: 'Take a Video',
-              child: const Icon(Icons.videocam),
             ),
           ),
         ],
@@ -393,53 +319,3 @@ class _MyHomePageState extends State<CaptureImage> {
 
 typedef void OnPickImageCallback(
     double? maxWidth, double? maxHeight, int? quality);
-
-class AspectRatioVideo extends StatefulWidget {
-  AspectRatioVideo(this.controller);
-
-  final VideoPlayerController? controller;
-
-  @override
-  AspectRatioVideoState createState() => AspectRatioVideoState();
-}
-
-class AspectRatioVideoState extends State<AspectRatioVideo> {
-  VideoPlayerController? get controller => widget.controller;
-  bool initialized = false;
-
-  void _onVideoControllerUpdate() {
-    if (!mounted) {
-      return;
-    }
-    if (initialized != controller!.value.isInitialized) {
-      initialized = controller!.value.isInitialized;
-      setState(() {});
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    controller!.addListener(_onVideoControllerUpdate);
-  }
-
-  @override
-  void dispose() {
-    controller!.removeListener(_onVideoControllerUpdate);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (initialized) {
-      return Center(
-        child: AspectRatio(
-          aspectRatio: controller!.value.aspectRatio,
-          child: VideoPlayer(controller!),
-        ),
-      );
-    } else {
-      return Container();
-    }
-  }
-}

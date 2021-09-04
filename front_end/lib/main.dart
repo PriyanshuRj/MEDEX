@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:front_end/screens/saho_login.dart';
 import 'package:flutter/services.dart';
-import 'package:camera/camera.dart';
-import 'dart:async';
 
 void main() {
   // Obtain a list of the available cameras on the device.
