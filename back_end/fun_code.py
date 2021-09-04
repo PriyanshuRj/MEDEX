@@ -5,6 +5,7 @@ from pyzbar.pyzbar import decode
 import pandas as pd
 
 dataset = pd.read_csv("Database.csv")
+dataset_front = pd.read_csv("Database_front.csv")
 code = dataset.iloc[:, 1]
 name = dataset.iloc[:, 0]
 
@@ -309,10 +310,7 @@ def text_transverse(text):
         for j in range(len(name)):
 
             if array[i] == name[j]:
-                print(dataset.iloc[j, 2])
-                return dataset.iloc[j, 2], "Real Medicine", dataset.iloc[j, 0]
-
-    print(array)
+                return dataset_front.iloc[j, 2], "Real Medicine", dataset_front.iloc[j, 0]
     return None, "Fake Medicine", None
 
 
