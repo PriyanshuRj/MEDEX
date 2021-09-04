@@ -3,6 +3,7 @@ import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:front_end/widgets/top_container.dart';
 import 'package:front_end/widgets/button_card.dart';
+import 'package:front_end/widgets/drawer.dart';
 
 class Result extends StatelessWidget {
   Text subheading(String title) {
@@ -21,6 +22,17 @@ class Result extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: LightColors.kLightYellow,
+      appBar: AppBar(
+        backgroundColor: LightColors.kDarkYellow,
+        // leading: Icon(Icons.menu, color: LightColors.kDarkBlue, size: 30.0),
+        elevation: 0,
+        // bottom: Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
+        actions: [
+          Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
+        ],
+        iconTheme: IconThemeData(color: LightColors.kDarkBlue),
+      ),
+      drawer: MyDrawer(),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -30,15 +42,15 @@ class Result extends StatelessWidget {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Icon(Icons.menu,
-                            color: LightColors.kDarkBlue, size: 30.0),
-                        Icon(Icons.search,
-                            color: LightColors.kDarkBlue, size: 25.0),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // children: <Widget>[
+                    //   Icon(Icons.menu,
+                    //       color: LightColors.kDarkBlue, size: 30.0),
+                    //   Icon(Icons.search,
+                    //       color: LightColors.kDarkBlue, size: 25.0),
+                    // ],
+                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 0, vertical: 0.0),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:front_end/screens/upload_image.dart';
+import 'package:front_end/screens/home_page.dart';
 
 import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -75,6 +76,15 @@ class MyDrawer extends StatelessWidget {
                 ),
               ],
             ),
+            TextButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                },
+                icon: Icon(Icons.home, color: Colors.black),
+                label: Text("Home", style: TextStyle(color: Colors.black))),
             TextButton.icon(
                 onPressed: () {},
                 icon: Icon(
