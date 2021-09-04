@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/theme/colors/light_colors.dart';
+<<<<<<< HEAD
 import 'package:sawo/sawo.dart';
+=======
+import 'package:flutter/services.dart';
+import 'package:front_end/screens/saho_login.dart';
+
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: LightColors.kLightYellow, // navigation bar color
+    statusBarColor: Color(0xffffb969), // status bar color
+  ));
+
+  return runApp(MyApp());
+}
+>>>>>>> aca18a8dbc7bfec3f8cd156cd6dd68da096b80ed
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
