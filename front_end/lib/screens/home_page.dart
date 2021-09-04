@@ -8,6 +8,13 @@ import 'package:front_end/widgets/button_card.dart';
 import 'package:front_end/widgets/top_container.dart';
 
 class HomePage extends StatelessWidget {
+  final Object user;
+
+  HomePage({
+    this.user,
+    print(user),
+  });
+
   Text subheading(String title) {
     return Text(
       title,
@@ -116,7 +123,7 @@ class HomePage extends StatelessWidget {
                 label: Text("History", style: TextStyle(color: Colors.black))),
             TextButton.icon(
                 onPressed: () {},
-                icon: Icon(Icons.upload, color: Colors.black),
+                icon: Icon(Icons.add, color: Colors.black),
                 label: Text("Upload Image",
                     style: TextStyle(color: Colors.black))),
             TextButton.icon(
