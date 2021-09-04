@@ -7,6 +7,13 @@ import 'package:front_end/widgets/button_card.dart';
 import 'package:front_end/widgets/top_container.dart';
 
 class HomePage extends StatelessWidget {
+  final Object user;
+
+  HomePage({
+    this.user,
+    print(user),
+  });
+
   Text subheading(String title) {
     return Text(
       title,
