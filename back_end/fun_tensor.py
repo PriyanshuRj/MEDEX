@@ -2,6 +2,7 @@ import keras_ocr
 import pandas as pd
 
 dataset = pd.read_csv("Database.csv")
+dataset_front = pd.read_csv("Database_front.csv")
 code = dataset.iloc[:, 1]
 name = dataset.iloc[:, 0]
 
@@ -27,15 +28,15 @@ def search_dataBase(array):
         if(len(name_array) == 1):
             for i in range(len(array)):
                 if array[i] == name[j]:
-                    return dataset.iloc[j, 2], "Real Medicine", dataset.iloc[j, 0]
+                    return dataset_front.iloc[j, 2], "Real Medicine", dataset_front.iloc[j, 0]
         else :
             for i in range(len(array)):
                 if array[i] == name_array[0] :
                     if i < len(array)-1 and array[i + 1] == name_array[1]:
-                        return dataset.iloc[j, 2], "Real Medicine", dataset.iloc[j, 0]
+                        return dataset_front.iloc[j, 2], "Real Medicine", dataset_front.iloc[j, 0]
 
                     elif i >0 and  array[i-1] == name_array[1]:
-                        return dataset.iloc[j, 2], "Real Medicine", dataset.iloc[j, 0]
+                        return dataset_front.iloc[j, 2], "Real Medicine", dataset_front.iloc[j, 0]
     return None, "Fake Medicine", None
 
 
