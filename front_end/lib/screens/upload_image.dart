@@ -3,6 +3,7 @@ import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:front_end/widgets/upload_image_box.dart';
 import 'package:front_end/widgets/top_container.dart';
+import 'package:front_end/widgets/drawer.dart';
 
 class UploadImage extends StatelessWidget {
   Text subheading(String title) {
@@ -20,6 +21,17 @@ class UploadImage extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: LightColors.kDarkYellow,
+        // leading: Icon(Icons.menu, color: LightColors.kDarkBlue, size: 30.0),
+        elevation: 0,
+        // bottom: Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
+        actions: [
+          Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
+        ],
+        iconTheme: IconThemeData(color: LightColors.kDarkBlue),
+      ),
+      drawer: MyDrawer(),
       backgroundColor: LightColors.kLightYellow,
       body: SafeArea(
         child: Column(
