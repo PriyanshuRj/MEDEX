@@ -4,7 +4,6 @@ import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:sawo/sawo.dart';
 import 'dart:convert';
 import 'package:camera/camera.dart';
-import 'package:front_end/theme/colors/light_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -12,7 +11,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final CameraDescription camera;
+  final CameraDescription? camera;
   _LoginScreenState({
     this.camera,
   });

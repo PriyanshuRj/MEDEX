@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ButtonCard extends StatelessWidget {
-  final Color cardColor;
+  final Color? cardColor;
   final String title;
 
   ButtonCard({
     this.cardColor,
-    this.title,
+    this.title = '',
   });
 
   @override

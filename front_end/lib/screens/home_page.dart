@@ -8,7 +8,7 @@ import 'package:front_end/widgets/button_card.dart';
 import 'package:front_end/widgets/top_container.dart';
 import 'package:front_end/widgets/drawer.dart';
 
-import 'package:front_end/screens/capture.dart';
+import 'package:front_end/screens/comming_soon.dart';
 
 class HomePage extends StatelessWidget {
   Text subheading(String title) {
@@ -153,7 +153,7 @@ class HomePage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => TakePictureScreen()),
+                                    builder: (context) => CommingSoon()),
                               );
                             },
                             child: Row(children: <Widget>[

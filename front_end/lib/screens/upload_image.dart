@@ -4,6 +4,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:front_end/widgets/upload_image_box.dart';
 import 'package:front_end/widgets/top_container.dart';
 import 'package:front_end/widgets/drawer.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UploadImage extends StatelessWidget {
   Text subheading(String title) {

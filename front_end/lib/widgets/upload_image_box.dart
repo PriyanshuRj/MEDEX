@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:front_end/screens/result.dart';
 
 class UploadImageBox extends StatelessWidget {
-  final Color cardColor;
+  final Color? cardColor;
   final String title;
-  final IconData mainicon;
+  final IconData? mainicon;
 
   UploadImageBox({
     this.cardColor,
-    this.title,
+    this.title = '',
     this.mainicon,
   });
 
@@ -50,7 +50,7 @@ class UploadImageBox extends StatelessWidget {
                 height: 40.0,
               ),
               Text(
-                title,
+                'hello',
                 style: TextStyle(
                   fontSize: 25.0,
                   color: Colors.white,

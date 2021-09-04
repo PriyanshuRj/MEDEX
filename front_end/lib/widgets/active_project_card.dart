@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:front_end/screens/comming_soon.dart';
 
 class ActiveProjectsCard extends StatelessWidget {
-  final Color cardColor;
+  final Color? cardColor;
   final String title;
 
   ActiveProjectsCard({
     this.cardColor,
-    this.title,
+    this.title = '',
   });
 
   @override

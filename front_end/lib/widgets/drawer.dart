@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:front_end/screens/upload_image.dart';
 import 'package:front_end/screens/home_page.dart';
 import 'package:front_end/screens/capture.dart';
+import 'package:front_end/screens/comming_soon.dart';
 
 import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -114,8 +115,7 @@ class MyDrawer extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => TakePictureScreen()),
+                    MaterialPageRoute(builder: (context) => CommingSoon()),
                   );
                 },
                 icon: Icon(Icons.camera, color: Colors.black),
