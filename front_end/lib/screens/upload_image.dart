@@ -5,8 +5,37 @@ import 'package:front_end/widgets/upload_image_box.dart';
 import 'package:front_end/widgets/top_container.dart';
 import 'package:front_end/widgets/drawer.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:async';
+import 'dart:io';
 
-class UploadImage extends StatelessWidget {
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
+
+class UploadImage extends StatefulWidget {
+  UploadImage({Key? key, this.title}) : super(key: key);
+  final String? title;
+  @override
+  _UploadImageState createState() => _UploadImageState();
+}
+
+class _UploadImageState extends State<UploadImage> {
+  List<XFile>? _imageFileList;
+  set _imageFile(XFile? value) {
+    _imageFileList = value == null ? null : [value];
+  }
+
+  dynamic _pickImageError;
+  bool isVideo = false;
+
+  VideoPlayerController? _controller;
+  VideoPlayerController? _toBeDisposed;
+  String? _retrieveDataError;
+  final ImagePicker _picker = ImagePicker();
+  final TextEditingController maxWidthController = TextEditingController();
+  final TextEditingController maxHeightController = TextEditingController();
+  final TextEditingController qualityController = TextEditingController();
+
   Text subheading(String title) {
     return Text(
       title,
