@@ -96,7 +96,7 @@ class Result extends StatelessWidget {
                   ]),
             ),
             Expanded(
-              child: SingleChildScrollView(child: FakeMedicine()),
+              child: SingleChildScrollView(child: RealMedicine()),
             ),
           ],
         ),
@@ -128,7 +128,7 @@ class RealMedicine extends StatelessWidget {
               Row(children: <Widget>[
                 ButtonCard(
                   cardColor: LightColors.kDarkYellow,
-                  title: 'Name',
+                  title: 'name',
                 ),
               ]),
               SizedBox(height: 20.0),

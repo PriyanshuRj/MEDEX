@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/screens/comming_soon.dart';
+import 'package:front_end/screens/result.dart';
 
 class ActiveProjectsCard extends StatelessWidget {
   final Color? cardColor;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/screens/upload_image.dart';
 import 'package:front_end/screens/upload2.dart';
+import 'package:front_end/screens/result.dart';
 
 import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
