@@ -55,13 +55,13 @@ class MyDrawer extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 22.0,
                                 color: LightColors.kDarkBlue,
-                                fontWeight: FontWeight.w800,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),
                           Container(
                             child: Text(
-                              'Welcome',
+                              'Welcome to MEDEX',
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 16.0,

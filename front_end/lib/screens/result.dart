@@ -28,7 +28,7 @@ class Result extends StatelessWidget {
         elevation: 0,
         // bottom: Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
         actions: [
-          Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
+          // Icon(Icons.search, color: LightColors.kDarkBlue, size: 25.0),
         ],
         iconTheme: IconThemeData(color: LightColors.kDarkBlue),
       ),
@@ -84,18 +84,7 @@ class Result extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 22.0,
                                     color: LightColors.kDarkBlue,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                child: Text(
-                                  'Welcome',
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.black45,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ),
