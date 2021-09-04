@@ -2,35 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:front_end/screens/home_page.dart';
 import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:flutter/services.dart';
+import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:sawo/sawo.dart';
-
-void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    systemNavigationBarColor: LightColors.kLightYellow, // navigation bar color
-    statusBarColor: Color(0xffffb969), // status bar color
-  ));
-
-  return runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: Theme.of(context).textTheme.apply(
-            bodyColor: LightColors.kDarkBlue,
-            displayColor: LightColors.kDarkBlue,
-            fontFamily: 'Poppins'),
-      ),
-      home: LoginScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -49,9 +22,15 @@ class _LoginScreenState extends State<LoginScreen> {
   void payloadCallback(context, payload) {
     if (payload == null || (payload is String && payload.length == 0)) {
       payload = "Login Failed :(";
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
     }
     setState(() {
       user = payload;
+      print(user);
     });
   }
 
@@ -59,7 +38,13 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sawo"),
+        backgroundColor: LightColors.kDarkYellow,
+        title: Text(
+          "Login Screen",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Center(
@@ -68,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("UserData :- $user"),
+              // Text("UserData :- $user"),
               ElevatedButton(
                 onPressed: () {
                   sawo.signIn(
