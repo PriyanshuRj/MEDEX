@@ -4,6 +4,7 @@ import 'package:front_end/theme/colors/light_colors.dart';
 import 'package:sawo/sawo.dart';
 import 'dart:convert';
 import 'package:camera/camera.dart';
+import 'package:front_end/theme/colors/light_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -68,6 +69,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 },
                 child: Text('Email Login'),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(LightColors.kDarkYellow),
+                ),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -78,6 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 },
                 child: Text('Phone Login'),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(LightColors.kDarkYellow),
+                ),
               ),
             ],
           ),
