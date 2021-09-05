@@ -1,4 +1,4 @@
-# BrigAid
+# MEDEX
 **This is a online based platform which will help you to distinguish between real and fake medicines, in the market.**
 
 -----------------------------------------------------------------------------------------------------------------------
@@ -34,9 +34,9 @@
 
 **STEP4: The results regarding the medicines will be displayed on your screen.** 
 
-![Screenshot (253)](https://user-images.githubusercontent.com/78435208/120807097-35ce1880-c565-11eb-9fa5-99e624742626.png)
-![Screenshot (254)](https://user-images.githubusercontent.com/78435208/120807114-39619f80-c565-11eb-9a8e-b0e58744d3fa.png)
-![Screenshot (255)](https://user-images.githubusercontent.com/78435208/120807117-39fa3600-c565-11eb-9bf5-20222fbea1c1.png)
+![Screenshot (253)](https://github.com/Priyanshu-rajput-01/MEDEX/blob/master/screenshorts/Screenshot_1630765631.png?raw=true)
+![Screenshot (254)](https://github.com/Priyanshu-rajput-01/MEDEX/blob/master/screenshorts/Screenshot_1630778828.png?raw=true)
+![Screenshot (255)](https://github.com/Priyanshu-rajput-01/MEDEX/blob/master/screenshorts/Screenshot_1630779040.png?raw=true)
 
 ----------------------------------------------------------------------------------------------------------------------------
 
