@@ -37,6 +37,9 @@
 ![Screenshot (253)](https://github.com/Priyanshu-rajput-01/MEDEX/blob/master/screenshorts/Screenshot_1630765631.png?raw=true)
 ![Screenshot (254)](https://github.com/Priyanshu-rajput-01/MEDEX/blob/master/screenshorts/Screenshot_1630778828.png?raw=true)
 ![Screenshot (255)](https://github.com/Priyanshu-rajput-01/MEDEX/blob/master/screenshorts/Screenshot_1630779040.png?raw=true)
+![image](https://user-images.githubusercontent.com/76838551/132115643-f59df657-e08b-497a-bfaa-dcf809d18f72.png)
+![Screenshot (254)](https://github.com/Priyanshu-rajput-01/MEDEX/blob/master/screenshorts/Screenshot_1630779991.png?raw=true)
+![Screenshot (255)](https://github.com/Priyanshu-rajput-01/MEDEX/blob/master/screenshorts/Screenshot_1630779040.png?raw=true)
 
 ----------------------------------------------------------------------------------------------------------------------------
 
