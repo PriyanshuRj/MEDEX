@@ -48,6 +48,8 @@ def predict_medicine():
     filename = werkzeug.utils.secure_filename(imagefile.filename)
     print("\nReceived image File name : " + imagefile.filename)
     imagefile.save(filename)
+    
+    
 
     # convert image string data to numpy array
     # npimg = numpy.fromstring(filestr, numpy.uint8)
