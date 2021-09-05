@@ -17,11 +17,10 @@
 ---------------------------------------------------------------------------------------------------------------------------
 
 ## Demo link of the Project
-**Video Link
-:- https://drive.google.com/drive/folders/1h8YBNjKLVQ_lnj6311ABN5vFtdhAseEm?usp=sharing** 
+ 
 
 **PPT Link
-:- https://docs.google.com/presentation/d/1u2_hRpFcGdfveWxH4Cb8I_xyY8HC30f0Jzv9PyBl5f0/edit#slide=id.p**
+:- https://docs.google.com/presentation/d/1ZN5_iEPiEzkOhzT_BJeKTqPVun1Vr9EyIa8BL3xuqh4/edit?usp=sharing**
 
 ------------------------------------------------------------------------------------------------------------------------
 
