@@ -4,17 +4,17 @@ import cv2
 import base64
 import logging
 from fun_code import main as infer_medicine
-from fun_tensor import tensor_main as tensor_medicine
+from fun_tensor import tensor_main as infer_tensor
 from fun_code import read_img
 import werkzeug
 
 
-path = "D:\\VSCode\\hoho\\BrigAID\\fake\\test_images\\25.jpg"
-authentic, med_name, med_description = infer_medicine(path)
-print(authentic, med_name, med_description)
-if med_name == None:
-    med_name , authentic, med_description = infer_medicine(path)
+# path = "images/38.jpg"
+# authentic, med_name, med_description = infer_medicine(path)
 
+# if med_name ==None:
+#     med_description, authentic, med_name  = infer_tensor(path)
+# print(authentic, med_name, med_description)
 
 log = logging.getLogger(__name__)
 
@@ -48,8 +48,6 @@ def predict_medicine():
     filename = werkzeug.utils.secure_filename(imagefile.filename)
     print("\nReceived image File name : " + imagefile.filename)
     imagefile.save(filename)
-    
-    
 
     # convert image string data to numpy array
     # npimg = numpy.fromstring(filestr, numpy.uint8)
@@ -58,7 +56,9 @@ def predict_medicine():
     # img = cv2.imdecode(npimg, cv2.IMREAD_UNCHANGED)
 
     # Run inference tasks here
-    authentic, med_name, med_description = infer_medicine(filename)
+    authentic, med_name, med_description = infer_medicine(path)
+    if med_name == None:
+        med_description, authentic, med_name = infer_tensor(path)
     print(authentic, med_name, med_description)
     return jsonify(
         {
