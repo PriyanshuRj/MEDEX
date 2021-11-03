@@ -5,7 +5,6 @@
 
 ## Table of Contents:
 **1. Description**
-**2. Demo Link**
 **3. Contributors**
 **4. How to use**
 
