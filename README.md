@@ -5,8 +5,8 @@
 
 ## Table of Contents:
 **1. Description**
-**3. Contributors**
-**4. How to use**
+**2. Contributors**
+**3. How to use**
 
 ------------------------------------------------------------------------------------------------------------------------
 ## Description
